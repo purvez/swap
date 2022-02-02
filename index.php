@@ -143,44 +143,11 @@ h1 {
 </style>
 </head>
 
-<body>
-<div class="container">
-<div class="row">
-<div class="col-md-8 col-md-offset-2" style="margin-top: 5%;">
-<div class="row">
-<?php 
-$connection = mysqli_connect('localhost','root','','swapdb');
-if (isset($_POST['search']))
-{
-    $searchKey= $_POST['search'];
-    $sql="SELECT * FROM product WHERE title LIKE '%searchKey%' OR details LIKE '%searchKey%' OR shippingAddress LIKE '%searchKey%'";
-}
-else
-{
-    $sql="SELECT * FROM product";
-    $searchKey="";
 }
 
-$returnvalue = mysqli_query($connection,$sql);
-while ($row = mysqli_fetch_assoc($returnvalue)){
-    component($row['title'], $row['price'], $row['thumbnail'], $row['id'],$row['details'],$row['shippingAddress']);
-}
-?>
-<form action="" method="POST"
-	<div class="col-md-6">
-		<input type="text" name="search" class='form-control' 
-		placeholder="Search For Product" value="" >
-		<div class="col-md-6 text-left">
-			<button class="btn">Search</button>
-			</div>
-</form>
-		</div>
-	</div>
-</div>
-</div>
-</div>
-</div>
-</body>
+
+
+
 
 <h1>WELCOME TO THE TP ECOMMERCE WEBSITE <?php echo $username?> ! </h1>
 
