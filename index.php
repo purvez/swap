@@ -1,5 +1,4 @@
 
-
 <?php
 session_start();
 $con = mysqli_connect("localhost","root","","swapdb"); //connect to database
@@ -8,11 +7,13 @@ $con = mysqli_connect("localhost","root","","swapdb"); //connect to database
 if (!$con){
 die('Could not connect: ' . mysqli_connect_errno()); //return error is connect fail
 }
-if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user" && $_SESSION['verified'] != "1" ) {
-    //echo '<script>alert("This page is for admin")</script>';
-    header("location:loginform.php");
-    session_destroy();
-}
+
+// if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user" && $_SESSION['verified'] != "1" ) {
+//     //echo '<script>alert("This page is for admin")</script>';
+//     header("location:loginform.php");
+//     session_destroy();
+// }
+
 $query="SELECT id,title,stock,details,price,shippingAddress,thumbnail,image1,image2,image3 FROM product"; //SQL statement to read the information
 $pQuery=$con->prepare($query); //use prepared statements
 $result=$pQuery->execute(); //execute
@@ -146,59 +147,68 @@ h1 {
 
 
 
-<?php 
-$con = mysqli_connect("localhost","root","","swapdb");
-if (isset($_POST['search']))
-{
-    $searchKey= $_POST['search'];
-    $sql="SELECT * FROM product WHERE title LIKE "%searchKey%" OR details LIKE "%searchKey%" OR shippingAddress LIKE "%searchKey%" ";
-}
 
-else
-{
-    $sql="SELECT * FROM product";
-    $searchKey="";
-}
-
-$result = mysqli_query($con,$sql);
-
-while ($row = mysqli_fetch_assoc($result))
-{
-     component($row['title'], $row['price'], $row['thumbnail'], $row['id'],$row['details'],$row['shippingAddress']);
-}
-
-?>
-<form action="" method="POST"
-	
-		<input type="text" name="search" class='form-control' 
-		placeholder="Search For Product" value="" >
-		<button class="btn">Search</button>
-</form>
 
 
 <h1>WELCOME TO THE TP ECOMMERCE WEBSITE <?php echo $username?>  </h1>
 
 
 
-<div class="container">
-        <div class="row text-center py-5">
-            <?php
-                $result = $database->getData();
-                while ($row = mysqli_fetch_assoc($result)){
-                    component($row['title'], $row['price'], $row['thumbnail'], $row['id'],$row['details'],$row['shippingAddress']);
-                }
-                
-               
-                
-            ?>
-        </div>
-</div>
+
+<form action="" method="POST">
+<input type="text" id="search" name="search" placeholder="Search For Product" value=""><br>
+<button class="submit">Search</button>
+</form>
+
+
 
 <div class="container">
         <div class="row text-center py-5">
-           
-        </div>
+<?php 
+
+$connection = mysqli_connect('localhost','root','','swapdb');
+
+setcookie("searched","",time()+3600);
+if(isset($_COOKIE['searched']))
+{
+    $sql="SELECT * FROM product";
+    $result1 = mysqli_query($connection,$sql);
+    while ($row=mysqli_fetch_assoc($result1)){
+        component($row['title'], $row['price'], $row['thumbnail'], $row['id'],$row['details'],$row['shippingAddress']);
+    }
+}
+
+if (isset($_POST['search']))
+{   
+    setcookie("searched","",time()-3600);
+    unset($_COOKIE["searched"]);
+    $searchKey= $_POST['search'];
+    $sql="SELECT * FROM product WHERE title LIKE '".$searchKey."' OR details LIKE '".$searchKey."' OR shippingAddress LIKE '".$searchKey."'";
+    $result = mysqli_query($connection,$sql);
+    while ($row = mysqli_fetch_assoc($result))
+    {
+        component($row['title'], $row['price'], $row['thumbnail'], $row['id'],$row['details'],$row['shippingAddress']);
+    }
+    
+    if(empty($searchKey))
+    {
+        $sql="SELECT * FROM product";
+        $result1 = mysqli_query($connection,$sql);
+        while ($row=mysqli_fetch_assoc($result1)){
+            component($row['title'], $row['price'], $row['thumbnail'], $row['id'],$row['details'],$row['shippingAddress']);
+        }
+
+    }
+}
+
+?>
+    </div>
 </div>
+
+
+
+
+
 
 
 
@@ -214,4 +224,3 @@ while ($row = mysqli_fetch_assoc($result))
 </html>
 
 
-//comment
