@@ -2,17 +2,17 @@
 <?php
 session_start();
 $con = mysqli_connect("localhost","root","","swapdb"); //connect to database
-
+$x=0;
 
 if (!$con){
 die('Could not connect: ' . mysqli_connect_errno()); //return error is connect fail
 }
 
-// if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user" && $_SESSION['verified'] != "1" ) {
-//     //echo '<script>alert("This page is for admin")</script>';
-//     header("location:loginform.php");
-//     session_destroy();
-// }
+if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user" && $_SESSION['verified'] != "1" ) {
+    //echo '<script>alert("This page is for admin")</script>';
+    header("location:loginform.php");
+    session_destroy();
+}
 
 $query="SELECT id,title,stock,details,price,shippingAddress,thumbnail,image1,image2,image3 FROM product"; //SQL statement to read the information
 $pQuery=$con->prepare($query); //use prepared statements
@@ -168,8 +168,8 @@ h1 {
 
 $connection = mysqli_connect('localhost','root','','swapdb');
 
-setcookie("searched","",time()+3600);
-if(isset($_COOKIE['searched']))
+
+if( !isset($_POST['search']))
 {
     $sql="SELECT * FROM product";
     $result1 = mysqli_query($connection,$sql);
@@ -178,10 +178,9 @@ if(isset($_COOKIE['searched']))
     }
 }
 
+
 if (isset($_POST['search']))
 {   
-    setcookie("searched","",time()-3600);
-    unset($_COOKIE["searched"]);
     $searchKey= $_POST['search'];
     $sql="SELECT * FROM product WHERE title LIKE '".$searchKey."' OR details LIKE '".$searchKey."' OR shippingAddress LIKE '".$searchKey."'";
     $result = mysqli_query($connection,$sql);
