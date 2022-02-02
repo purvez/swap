@@ -9,11 +9,14 @@ setcookie("weather", NULL, time()-30*24*60*60, "/");
 printmessage("Before session_destroy");
 session_start();
 debug();
+$sql = "UPDATE users SET otp = $otp, otpExpiry = '0' WHERE email = $email";
+$sqlResult = mysqli_query($con, $sql);
 
 printmessage("Calling session_destory");
 session_unset();
 session_destroy(); 
-
+$con = mysqli_connect("localhost","root","","swapdb");
+$email = $_SESSION['email'];
 printmessage("After session_destroy");
 debug();
 

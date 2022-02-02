@@ -90,6 +90,8 @@ if(isset($_POST['submit'])){
         $errors['password'] = "Password required";
     }
     
+    $username=htmlspecialchars($_POST["username"],ENT_QUOTES);
+    $password=htmlspecialchars($_POST["password"],ENT_QUOTES);
         
         if (count($errors) === 0) {
             $sql = "SELECT * FROM users WHERE email=? OR username=? LIMIT 1";
@@ -182,7 +184,6 @@ if(isset($_POST['submit'])){
 <?php
 /*
 $error = NULL;
-
 if(isset($_POST['submit'])){
     //Connect to Database
     $con = mysqli_connect("localhost","root","","swapdb");
