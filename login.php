@@ -122,7 +122,7 @@ if(isset($_POST['submit'])){
                 $_SESSION['alert-success'] = "alert-success";
                 $_SESSION['verified']=$user['verified'];
                 $otp = rand(100000, 999999);
-                $sql = "UPDATE users SET otp = $otp, otpExpiry = '1' WHERE email = '". $_POST["username"] ."' OR username = '". $_POST["username"] ."'";
+                $sql = "UPDATE users SET otp = $otp WHERE email = '". $_POST["username"] ."' OR username = '". $_POST["username"] ."'";
                 $sqlResult = mysqli_query($con, $sql);
 
                 $content = "One Time Password for login authentication is: " . $otp;
