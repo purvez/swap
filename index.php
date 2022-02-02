@@ -149,7 +149,7 @@ h1 {
 <div class="col-md-8 col-md-offset-2" style="margin-top: 5%;">
 <div class="row">
 <?php 
-$connection = mysqli+connect('localhost','root','','swapdb');
+$connection = mysqli_connect('localhost','root','','swapdb');
 if (isset($_POST['search']))
 {
     $searchKey= $_POST['search'];
