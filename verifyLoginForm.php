@@ -89,7 +89,6 @@ if(isset($_POST['OTPAuth'])){
                             <?php endforeach; ?>
                         </div> 
                     <?php endif; ?>
-
                     <div class="form-group">
                         <label for="otp">Enter OTP Code</label>
                         <input type="text" name="otp" value="<?php echo $otp; ?>" class="form-control form-control-lg">
