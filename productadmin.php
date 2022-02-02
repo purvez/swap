@@ -19,7 +19,7 @@ session_start();
 //     echo "</pre>";
 // }
 //test
-
+/*
 echo "<pre><b>For product admins only</b><br></pre>";
 
 if (isset($_SESSION["username"]) && $_SESSION["role"]=="productadmin")
@@ -38,7 +38,13 @@ else {
 //     debug();
     die("");
 }
+*/
 //after initial checks are successful => user is a product admin
+if ($_SESSION['role']!="productadmin") {
+    echo '<script>alert("This page is for product admin")</script>';
+    header("location:index.php");
+    //session_destroy();
+}
 $con = mysqli_connect("localhost","root","","swapdb"); //connect to database
 if (!$con){
     die('Could not connect: ' . mysqli_connect_errno()); //return error is connect fail
