@@ -81,6 +81,15 @@ if(isset($_POST['submit'])){
             $errors['birthday'] = "Date Of Birth required";
         }
         
+        $username=htmlspecialchars($_POST["username"],ENT_QUOTES);
+        $email=htmlspecialchars($_POST["email"],ENT_QUOTES);
+        $passwd=htmlspecialchars($_GET["passwd"],ENT_QUOTES);
+        $address=htmlspecialchars($_POST["address"],ENT_QUOTES);
+        $contact=htmlspecialchars($_POST["contactNumber"],ENT_QUOTES);
+        
+        
+        
+        
         /*if (!preg_match($emailreg,$email)){
          $errors['email'] = "Please Use Gmail Account";
          //die("invalid email");

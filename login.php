@@ -90,6 +90,8 @@ if(isset($_POST['submit'])){
         $errors['password'] = "Password required";
     }
     
+    $username=htmlspecialchars($_POST["username"],ENT_QUOTES);
+    $password=htmlspecialchars($_GET["password"],ENT_QUOTES);
         
         if (count($errors) === 0) {
             $sql = "SELECT * FROM users WHERE email=? OR username=? LIMIT 1";
