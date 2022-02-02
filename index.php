@@ -143,7 +143,7 @@ h1 {
 </style>
 </head>
 
-<body>
+
 <?php 
 $connection = mysqli_connect('localhost','root','','swapdb');
 if (isset($_POST['search']))
@@ -158,9 +158,9 @@ else
 }
 
 $returnvalue = mysqli_query($connection,$sql);
-while ($row = mysqli_fetch_assoc($returnvalue)){
-    component($row['title'], $row['price'], $row['thumbnail'], $row['id'],$row['details'],$row['shippingAddress']);
-}
+// while ($row = mysqli_fetch_assoc($returnvalue)){
+//     component($row['title'], $row['price'], $row['thumbnail'], $row['id'],$row['details'],$row['shippingAddress']);
+// }
 ?>
 <form action="" method="POST"
 	
@@ -169,7 +169,7 @@ while ($row = mysqli_fetch_assoc($returnvalue)){
 		<button class="btn">Search</button>
 			
 </form>
-</body>
+
 
 <h1>WELCOME TO THE TP ECOMMERCE WEBSITE <?php echo $username?> ! </h1>
 
