@@ -144,12 +144,8 @@ h1 {
 </head>
 
 <body>
-<div class="container">
-<div class="row">
-<div class="col-md-8 col-md-offset-2" style="margin-top: 5%;">
-<div class="row">
 <?php 
-$connection = mysqli+connect('localhost','root','','swapdb');
+$connection = mysqli_connect('localhost','root','','swapdb');
 if (isset($_POST['search']))
 {
     $searchKey= $_POST['search'];
@@ -167,19 +163,12 @@ while ($row = mysqli_fetch_assoc($returnvalue)){
 }
 ?>
 <form action="" method="POST"
-	<div class="col-md-6">
+	
 		<input type="text" name="search" class='form-control' 
 		placeholder="Search For Product" value="" >
-		<div class="col-md-6 text-left">
-			<button class="btn">Search</button>
-			</div>
+		<button class="btn">Search</button>
+			
 </form>
-		</div>
-	</div>
-</div>
-</div>
-</div>
-</div>
 </body>
 
 <h1>WELCOME TO THE TP ECOMMERCE WEBSITE <?php echo $username?> ! </h1>
