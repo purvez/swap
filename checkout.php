@@ -12,6 +12,26 @@ if(isset($_POST['shipping']) && isset($_POST['postal']) && isset($_POST['card'])
     $_SESSION['expiry']=$_POST['expiry'];
     $date = date("Y-m-d H:i:s");
     $cart_array=$_SESSION['cart'];
+    
+    if(!preg_match($postalreg,$_SESSION['postal'])){
+        $errors['postal'] = "Postal Code should be 6 numbers";
+    }
+    if(!preg_match($cardnumreg,$_SESSION['card'])){
+        $errors['card'] = "Credit card number should only contain 16 digit";
+    }
+    if(!preg_match($postalreg,$_SESSION['cvc'])){
+        $errors['cvc'] = "CVC should only have 3 digit";
+    }
+    if(!preg_match($postalreg,$_SESSION['expiry'])){
+        $errors['expiry'] = "Expiry date should me mm/yy";
+    }
+    
+    $_SESSION['shipping']=htmlspecialchars($_POST["shipping"],ENT_QUOTES);
+    $_SESSION['postal']=htmlspecialchars($_POST["postal"],ENT_QUOTES);
+    $_SESSION['card']=htmlspecialchars($_POST["card"],ENT_QUOTES);
+    $_SESSION['cvc']=htmlspecialchars($_POST["cvc"],ENT_QUOTES);
+    $_SESSION['expiry']=htmlspecialchars($_POST["expiry"],ENT_QUOTES);
+    
     foreach($_SESSION['cart'] as $key => $values){
         $query=$con->prepare("INSERT INTO `order`(`userid`, `productid`, `shippingaddress`, `totalprice`, `title`, `username`, `quantity`, `orderstatus`, `paymode`, `datePurchased`)
         VALUES (?,?,?,?,?,?,?,?,?,?)");

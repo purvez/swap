@@ -9,7 +9,7 @@ $contactreg = "/[6|8|9]\d{7}|\+65[6|8|9]\d{7}|\+65\s[6|8|9]\d{7}/";  //allows si
 $emailreg = "/^[\w.+\-]+@.com/"; //test if is an email or not
 $dobreg = "((0[1-9])|(1[0-2]))[\/-]((0[1-9])|(1[0-9])|(2[0-9])|(3[0-1]))[\-](\d{4})"; // date of birth, mm-dd-yyyy format
 $cardnumreg = "/^\d{16}$/"; //only allow 16 digits of number with no space
-$cvvreg = "/^\d{3}$/";
-$expiryreg = "/^(0[1-9])\/(|[0-9]{2})$/";
-$postalreg = "/^\d{6}$/"
+$cvcreg = "/^\d{3}$/"; // only allow 3 digits of number
+$expiryreg = "/^(0[1-9])\/(|[0-9]{2})$/"; //mm/yy
+$postalreg = "/^\d{6}$/"; // only allow 6 digits of number
 ?>
