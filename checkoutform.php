@@ -30,4 +30,3 @@ session_start();
 
 </table>
 </form>
-<!-- Comment -->
