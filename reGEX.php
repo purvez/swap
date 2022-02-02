@@ -11,5 +11,5 @@ $dobreg = "((0[1-9])|(1[0-2]))[\/-]((0[1-9])|(1[0-9])|(2[0-9])|(3[0-1]))[\-](\d{
 $cardnumreg = "/^\d{16}$/"; //only allow 16 digits of number with no space
 $cvvreg = "/^\d{3}$/";
 $expiryreg = "/^(0[1-9])\/(|[0-9]{2})$/";
-$postalreg = "/^\d{6}$/"
+$postalreg = "/^\d{6}$/";
 ?>
