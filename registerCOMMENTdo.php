@@ -52,7 +52,7 @@ function checkpost($input, $mandatory, $pattern) {
 	$username=$_SESSION["username"];
 	//$address=$_SESSION["address"];
 	$content=htmlspecialchars($_POST['content'],ENT_QUOTES);
-	$datePosted=$_POST['datePosted'];
+	$datePosted=date("Y-m-d H:i:s");
 	$rating=$_POST['rating'];
 	$flagged= 0;
 
