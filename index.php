@@ -144,6 +144,8 @@ h1 {
 </head>
 
 
+
+
 <?php 
 $con = mysqli_connect("localhost","root","","swapdb");
 if (isset($_POST['search']))
@@ -174,7 +176,7 @@ while ($row = mysqli_fetch_assoc($result))
 </form>
 
 
-<h1>WELCOME TO THE TP ECOMMERCE WEBSITE <?php echo $username?> ! </h1>
+<h1>WELCOME TO THE TP ECOMMERCE WEBSITE <?php echo $username?>  </h1>
 
 
 
@@ -212,4 +214,4 @@ while ($row = mysqli_fetch_assoc($result))
 </html>
 
 
-
+//comment

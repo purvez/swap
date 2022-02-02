@@ -25,7 +25,7 @@ session_start();
     </tr>
     <tr>
         <td></td>
-        <td> <input type="submit" value="Action"></td>
+        <td> <input type="submit" value="Checkout"></td>
     </tr>
 
 </table>
