@@ -31,7 +31,6 @@
 	<b>Add a comment</b><br>
 	<form action="registerCOMMENTdo.php?productID=<?php echo $id ?>&title=<?php echo $title ?>" method="post">
 		Content: <input type="text" name="content"><br>
-		Date:  <input type="date" name="datePosted" value="<?php echo $datePosted ?>" "  />
     	Rating: <select name="rating" id="rating">
  		<option value="1">1</option>
 		<option value="2">2</option>
