@@ -32,7 +32,7 @@ if(isset($_POST['OTPAuth'])){
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    echo $user['otp'];
+    
     
     if( $otp == $user['otp']){
         if ($user['otpExpiry'] == '0'){
@@ -45,11 +45,11 @@ if(isset($_POST['OTPAuth'])){
             $_SESSION['email'] = $user['email'];
             $_SESSION['verified'] = $user['verified'];
             $_SESSION['vkey'] = $user['vkey'];
+            $_SESSION['otpExpiry'] = $user['otpExpiry'];
             //Set flash message
             $_SESSION['message'] = "You are now logged in!";
             $_SESSION['alert-success'] = "alert-success";
-            echo $hello;
-            //header('location: index.php');
+            header('location: index.php');
         } else {
             echo "error";
         }
@@ -91,7 +91,7 @@ if(isset($_POST['OTPAuth'])){
                     <?php endif; ?>
                     <div class="form-group">
                         <label for="otp">Enter OTP Code</label>
-                        <input type="text" name="otp" value="<?php echo $otp; ?>" class="form-control form-control-lg">
+                        <input type="text" name="otp" " class="form-control form-control-lg">
                     </div>
                     <div class="form-group">
                         <input type="hidden" value="<?php echo $email; ?>" name="authenticate" class="form-control form-control-lg">
