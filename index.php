@@ -19,7 +19,7 @@ $result=$pQuery->execute(); //execute
 $result=$pQuery->get_result(); //store the results into a variable
 $nrows=$result->num_rows; //calculate number of rows
 
-
+//yes
 // if($nrows>0){
 //     //draw the table header ONCE only
 //     echo "<table border=1>";
