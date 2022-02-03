@@ -8,6 +8,8 @@ $birthday = "";
 $contact = "";
 $address = "";
 $otp = "";
+session_regenerate_id();
+
 $email = $_SESSION['email'];
 //echo $email;
 
@@ -38,7 +40,7 @@ if(isset($_POST['OTPAuth'])){
         if ($user['otpExpiry'] == '0'){
             $hello = $user['email'];
             $otp = rand(100000, 999999);
-            $sql = "UPDATE users SET otp = $otp, otpExpiry = '1' WHERE email = '". $_POST["authenticate"] ."'";
+            $sql = "UPDATE users SET otp = $otp, otpExpiry = '1' WHERE email = '". $email ."'";
             $sqlResult = mysqli_query($con, $sql);
             $_SESSION['id'] = $user['id'];
             $_SESSION['username'] = $user['username'];

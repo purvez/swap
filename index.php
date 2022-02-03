@@ -1,6 +1,7 @@
 
 <?php
 session_start();
+session_regenerate_id();
 $con = mysqli_connect("localhost","root","","swapdb"); //connect to database
 $x=0;
 
@@ -8,7 +9,7 @@ if (!$con){
 die('Could not connect: ' . mysqli_connect_errno()); //return error is connect fail
 }
 
-if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user" && $_SESSION['verified'] != "1" && $_SESSION['otpExpiry'] != "1" ) {
+if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user" && $_SESSION['verified'] != "1" && $_SESSION['otpExpiry'] == "1" ) {
     //echo '<script>alert("This page is for admin")</script>';
     header("location:loginform.php");
     session_destroy();
