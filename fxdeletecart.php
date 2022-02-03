@@ -31,7 +31,7 @@ foreach($_SESSION['cart'] as $key => $value)
         
         
         $query=("DELETE FROM cart WHERE id= '$cartID'");
-        // $query->bind_param('i',$cartID);
+        $query->bind_param('i',$cartID);
         $data=mysqli_query($con,$query);
         
         echo"<script>

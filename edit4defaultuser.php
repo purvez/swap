@@ -1,7 +1,9 @@
 <?php 
     require_once("config.php");
     $UserID = $_GET['updateid'];
-    $query = " select * from users where id='".$UserID."'";
+    $query=$con->prepare( " select * from users where id='".$UserID."'");
+    $query->bind_params('s', $UserID);
+    $query->execute();
     $result = mysqli_query($con,$query);
 
     while($row=mysqli_fetch_assoc($result))

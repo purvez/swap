@@ -39,8 +39,9 @@ function addData($email,$password,$username,$address,$profilePictureNull,$contac
     else printok("Selecting $db_database");
     
     
-    $query="INSERT INTO users (email, password, username, address, profilePicture, contactNumber,birthday,role)
-		VALUES ('$email', '$password','$username', '$address', '$profilePictureNull', '$contactNumber','$birthday','$role')";
+    $query=$con->prepare("INSERT INTO users (email, password, username, address, contactNumber, birthday, role, vkey, profilePicture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $query->bind_param('ssssissss', $email, $passwd, $username, $address, $contact, $birthday, $role, $vkey,$PP);
+    $query->execute();
     $result=mysqli_query($con,$query);
     if (!$result) {
         printerror("Selecting $db_database",$con);
