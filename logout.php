@@ -1,5 +1,5 @@
 <?php
-
+/*
 setcookie("PHPSESSID", NULL, time()-30*24*60*60, "/");
 setcookie("colour", NULL, time()-30*24*60*60, "/");
 setcookie("weather", NULL, time()-30*24*60*60, "/");
@@ -9,10 +9,14 @@ setcookie("weather", NULL, time()-30*24*60*60, "/");
 printmessage("Before session_destroy");
 session_start();
 debug();
+$email = $_SESSION['email'];
+$sql = "UPDATE users SET otp = $otp, otpExpiry = '0' WHERE email = $email";
+$sqlResult = mysqli_query($con, $sql);
 
 printmessage("Calling session_destory");
 session_unset();
 session_destroy(); 
+$con = mysqli_connect("localhost","root","","swapdb");
 
 printmessage("After session_destroy");
 debug();
@@ -38,5 +42,23 @@ function printmessage($message) {
 
 
 header("Refresh:0; url=loginform.php");
+*/
+session_start();
+logoff();
+
+function logoff() {
+    
+    
+    $email = $_SESSION['email'];
+    echo $email;
+    //$email = $_SESSION['email'];
+    $con = mysqli_connect("localhost","root","","swapdb");
+    $sql = "UPDATE users SET otpExpiry = '0' WHERE email = '".$email."'";
+    $sqlResult = mysqli_query($con, $sql);
+    session_destroy();
+    header("Refresh:0; url=loginform.php");
+    
+}
+
 ?>
 

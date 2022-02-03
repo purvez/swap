@@ -8,40 +8,46 @@ $birthday = "";
 $contact = "";
 $address = "";
 $otp = "";
+session_regenerate_id();
+
 $email = $_SESSION['email'];
 //echo $email;
 
 if(isset($_POST['OTPAuth'])){
-
+    
     $con = mysqli_connect("localhost","root","","swapdb");
     
     //Get Form Data
     $otp = $_POST['otp'];
-
+    
     if(empty($otp)) {
         $errors['otp'] = "OTP Code required";
     }
     
+    $authenticate = $_POST['authenticate'];
     
-//aa
+    
+    //aa
     $sql = "SELECT * FROM users WHERE email=? LIMIT 1";
     $stmt = $con->prepare($sql);
     $stmt->bind_param('s', $email);
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    echo $user['otp'];
-
+    
+    
     if( $otp == $user['otp']){
-        if ($user['otpExpiry'] == '1'){
+        if ($user['otpExpiry'] == '0'){
+            $hello = $user['email'];
             $otp = rand(100000, 999999);
-            $sql = "UPDATE users SET otp = $otp, otpExpiry = '0' WHERE email = $email";
+            $sql = "UPDATE users SET otp = $otp, otpExpiry = '1' WHERE email = '". $email ."'";
             $sqlResult = mysqli_query($con, $sql);
             $_SESSION['id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['email'] = $user['email'];
             $_SESSION['verified'] = $user['verified'];
             $_SESSION['vkey'] = $user['vkey'];
+            $_SESSION['otpExpiry'] = $user['otpExpiry'];
             //Set flash message
             $_SESSION['message'] = "You are now logged in!";
             $_SESSION['alert-success'] = "alert-success";
@@ -49,11 +55,11 @@ if(isset($_POST['OTPAuth'])){
         } else {
             echo "error";
         }
-
+        
     } else {
         $errors['login_fail'] = "Wrong Credentials";
     }
-
+    
 }
 ?>
 <!DOCTYPE html>
@@ -85,10 +91,12 @@ if(isset($_POST['OTPAuth'])){
                             <?php endforeach; ?>
                         </div> 
                     <?php endif; ?>
-
                     <div class="form-group">
                         <label for="otp">Enter OTP Code</label>
-                        <input type="text" name="otp" value="<?php echo $otp; ?>" class="form-control form-control-lg">
+                        <input type="text" name="otp" " class="form-control form-control-lg">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" value="<?php echo $email; ?>" name="authenticate" class="form-control form-control-lg">
                     </div>
                     <div class="form-group">
                         <button type="submit" name="OTPAuth" class="btn btn-primary btn-block btn-lag">Submit OTP</button>

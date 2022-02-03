@@ -91,7 +91,7 @@ if(isset($_POST['submit'])){
     }
     
     $username=htmlspecialchars($_POST["username"],ENT_QUOTES);
-    $password=htmlspecialchars($_POST["password"],ENT_QUOTES);
+    $password=htmlspecialchars($_GET["password"],ENT_QUOTES);
         
         if (count($errors) === 0) {
             $sql = "SELECT * FROM users WHERE email=? OR username=? LIMIT 1";
@@ -122,7 +122,7 @@ if(isset($_POST['submit'])){
                 $_SESSION['alert-success'] = "alert-success";
                 $_SESSION['verified']=$user['verified'];
                 $otp = rand(100000, 999999);
-                $sql = "UPDATE users SET otp = $otp, otpExpiry = '1' WHERE email = '". $_POST["username"] ."' OR username = '". $_POST["username"] ."'";
+                $sql = "UPDATE users SET otp = $otp WHERE email = '". $_POST["username"] ."' OR username = '". $_POST["username"] ."'";
                 $sqlResult = mysqli_query($con, $sql);
 
                 $content = "One Time Password for login authentication is: " . $otp;
@@ -184,7 +184,6 @@ if(isset($_POST['submit'])){
 <?php
 /*
 $error = NULL;
-
 if(isset($_POST['submit'])){
     //Connect to Database
     $con = mysqli_connect("localhost","root","","swapdb");

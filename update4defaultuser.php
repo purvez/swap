@@ -1,4 +1,6 @@
 <?php
+session_start();
+session_regenerate_id();
 $con = mysqli_connect("localhost","root","","swapdb"); //connect to database
 $userID=$_GET["updateID"];
 if (!$con){
@@ -91,7 +93,6 @@ echo"<td><a href='index.php'>Back to home page</a></td>";
 ?>
 <br>
 <?php
-session_start();
 $pp= $_SESSION["profilePicture"];
 ?>
   <img src="./upload/<?php echo $pp; ?>" class=\"img-fluid card-img-top\" width="100px"; height="100px"/>
