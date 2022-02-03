@@ -1,5 +1,6 @@
 <?php
 session_start();
+session_regenerate_id();
 $sessionid=$_COOKIE["PHPSESSID"];
 if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user") {
     header("location:index.php");
