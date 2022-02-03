@@ -7,8 +7,18 @@ $x=0;
 if (!$con){
 die('Could not connect: ' . mysqli_connect_errno()); //return error is connect fail
 }
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
 
-if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user" && $_SESSION['verified'] != "1" && $_SESSION['otpExpiry'] != "1" ) {
+print_r($_SESSION);
+
+
+if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user" && $_SESSION['otpExpiry'] != "1" ) {
     //echo '<script>alert("This page is for admin")</script>';
     header("location:loginform.php");
     session_destroy();
@@ -87,6 +97,7 @@ $nrows=$result->num_rows; //calculate number of rows
 
 
 $username=$_SESSION["username"];
+
 ?>
 
 
