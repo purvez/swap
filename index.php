@@ -16,6 +16,8 @@ if (isset($_SESSION["timeout"])) {
     }
 }
 
+$_SESSION["timeout"] = time();
+
 ?>
 
 
@@ -28,8 +30,12 @@ $con = mysqli_connect("localhost","root","","swapdb"); //connect to database
 if (!$con){
 die('Could not connect: ' . mysqli_connect_errno()); //return error is connect fail
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'main' of https://github.com/purvez/swap.git
 
+<<<<<<< HEAD
 if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user"  )
 {
     //echo '<script>alert("This page is for admin")</script>';
@@ -42,6 +48,21 @@ if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION
         header("location:loginform.php");
     }
 }
+=======
+
+// if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user"  )
+// {
+//     //echo '<script>alert("This page is for admin")</script>';
+
+//     header("location:loginform.php");
+//     session_destroy();
+// }elseif ($_SESSION['otpExpiry']=='1'){
+//     if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user") {
+//         //echo '<script>alert("This page is for admin")</script>';
+//         header("location:loginform.php");
+//     }
+// }
+>>>>>>> branch 'main' of https://github.com/purvez/swap.git
 
 
 $query="SELECT id,title,stock,details,price,shippingAddress,thumbnail,image1,image2,image3 FROM product"; //SQL statement to read the information
@@ -50,8 +71,11 @@ $result=$pQuery->execute(); //execute
 $result=$pQuery->get_result(); //store the results into a variable
 $nrows=$result->num_rows; //calculate number of rows
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> branch 'main' of https://github.com/purvez/swap.git
 // if($nrows>0){
 //     //draw the table header ONCE only
 //     echo "<table border=1>";
@@ -216,12 +240,15 @@ if( !isset($_POST['search']) )
 if (isset($_POST['search']))
 {   
     $searchKey= $_POST['search'];
-    $sql="SELECT * FROM product WHERE title LIKE '".$searchKey."' OR details LIKE '".$searchKey."' OR shippingAddress LIKE '".$searchKey."'";
+    $sql=("SELECT * FROM product WHERE title LIKE '".$searchKey."' OR details LIKE '".$searchKey."' OR shippingAddress LIKE '".$searchKey."'");
     $result = mysqli_query($connection,$sql);
     while ($row = mysqli_fetch_assoc($result))
     {
         component($row['title'], $row['price'], $row['thumbnail'], $row['id'],$row['details'],$row['shippingAddress']);
     }
+    $query="SELECT * FROM cart WHERE sessionid='$sessionid'"; //SQL statement to read the information
+    $pQuery=$con->prepare($query); //use prepared statements
+    $result=$pQuery->execute(); //execute
     
     if(empty($searchKey))
     {
