@@ -27,7 +27,4 @@ if(isset($_POST['update']))
         echo ' Please Check Your Query ';
     }
 }
-
-
-
 ?>

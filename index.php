@@ -16,6 +16,8 @@ if (isset($_SESSION["timeout"])) {
     }
 }
 
+$_SESSION["timeout"] = time();
+
 ?>
 
 
@@ -50,8 +52,6 @@ $result=$pQuery->execute(); //execute
 $result=$pQuery->get_result(); //store the results into a variable
 $nrows=$result->num_rows; //calculate number of rows
 
-<<<<<<< HEAD
-=======
 // if($nrows>0){
 //     //draw the table header ONCE only
 //     echo "<table border=1>";
@@ -120,7 +120,6 @@ $nrows=$result->num_rows; //calculate number of rows
 
 $username=$_SESSION["username"];
 
->>>>>>> branch 'main' of https://github.com/purvez/swap
 ?>
 
 

@@ -16,7 +16,7 @@ if(isset($_POST['update']))
     //$query->bind_param('ii',$quantity,$cartID); //bind parameters changes
     //$query=$con->prepare("update cart set quantity = '".$quantity."' where id = '".$cartID."'"); //prepare statement
     //$query->bind_param('ii',$quantity,$cartID); //bind parameters changes
-    
+    //NEED SANTIZE HERE
     
     
     
