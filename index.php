@@ -10,12 +10,8 @@ $con = mysqli_connect("localhost","root","","swapdb"); //connect to database
 if (!$con){
 die('Could not connect: ' . mysqli_connect_errno()); //return error is connect fail
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'main' of https://github.com/purvez/swap.git
 
-<<<<<<< HEAD
 if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user"  )
 {
     //echo '<script>alert("This page is for admin")</script>';
@@ -28,7 +24,6 @@ if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION
         header("location:loginform.php");
     }
 }
-=======
 
 // if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user"  )
 // {
@@ -42,7 +37,6 @@ if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION
 //         header("location:loginform.php");
 //     }
 // }
->>>>>>> branch 'main' of https://github.com/purvez/swap.git
 
 
 $query="SELECT id,title,stock,details,price,shippingAddress,thumbnail,image1,image2,image3 FROM product"; //SQL statement to read the information
@@ -51,11 +45,9 @@ $result=$pQuery->execute(); //execute
 $result=$pQuery->get_result(); //store the results into a variable
 $nrows=$result->num_rows; //calculate number of rows
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> branch 'main' of https://github.com/purvez/swap.git
+
 // if($nrows>0){
 //     //draw the table header ONCE only
 //     echo "<table border=1>";
