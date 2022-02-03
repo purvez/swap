@@ -1,5 +1,6 @@
 <?php
 session_start();
+session_regenerate_id();
 require 'config.php';
 if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user") {
     header("location:index.php");
