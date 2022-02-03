@@ -5,7 +5,7 @@ if (!$con){
 }
 $id=$_GET['id'];
 $query=$con->prepare("UPDATE swapdb.order SET `orderstatus` = 'Delivered' WHERE id=$id"); //SQL statement to read the information
-$query->bind_params('s', $id);
+$query->bind_param('s', $id);
 $query->execute();
 //$pQuery=$con->prepare($query); //use prepared statements
 //$result=$pQuery->execute(); //execute

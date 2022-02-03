@@ -33,7 +33,7 @@ if (isset($_POST['password-reset'])) {
     
     if (count($errors) == 0) {
         $sql=$con->prepare("SELECT * FROM users WHERE email='$email' LIMIT 1");
-        $sql->bind_params('s', $email);
+        $sql->bind_param('s', $email);
         $sql->execute();
         $result = mysqli_query($con, $sql);
         $user = mysqli_fetch_assoc($result);

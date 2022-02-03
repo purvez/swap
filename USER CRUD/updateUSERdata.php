@@ -16,7 +16,7 @@ if(isset($_POST['update']))
     $role = $_POST['role'];
     
     $query=$con->prepare("update users set email = '".$email."',password = '".$password."',username = '".$username."',address = '".$address."',profilePicture = '".$profilePicture."',contactNumber = '".$contactNumber."',birthday = '".$birthday."',role = '".$role."' where id='".$id."'");
-    $query->bind_params('sssssssss', $email, $password, $username, $address, $profilePicture, $contactNumber, $birthday, $role, $id);
+    $query->bind_param('sssssssss', $email, $password, $username, $address, $profilePicture, $contactNumber, $birthday, $role, $id);
     $query->execute();
     $result = mysqli_query($con,$query);
     

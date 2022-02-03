@@ -10,7 +10,7 @@ die('Could not connect: ' . mysqli_connect_errno()); //return error is connect f
 
 $ITEM_ID = $_GET['id'];
 $query=$con->prepare("DELETE FROM product WHERE id= '$ITEM_ID'");
-$query->bind_params("s", $ITEM_ID);
+$query->bind_param("s", $ITEM_ID);
 $query->execute();
 $data=mysqli_query($con,$query);
 header("Refresh:0; url=productadmin.php");

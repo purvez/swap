@@ -19,7 +19,9 @@ $userID=$_GET['userID'];
 if ( $_SESSION["id"]==$userID || $_SESSION['role']=="admin" )
 {
 $id = $_GET['id'];
-$query= "DELETE FROM review WHERE id= '$id'";
+$query=$con->prepare("DELETE FROM review WHERE id= '$id'");
+$query->bind_param('s', $id);
+$query->execute();
 $data=mysqli_query($con,$query);
 echo "COMMENT DELETED SUCCESSFULLY!";
 header("Refresh:5; url=getcommentdo.php?productID=$productID");

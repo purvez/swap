@@ -40,7 +40,7 @@ function addData($title,$stock,$details,$price,$shippingAddress,$thumbnail) {
     
     
     $query=$con->prepare("INSERT INTO product (title, stock, details, price, shippingAddress, thumbnail) VALUES (?, ?, ?, ?, ?, ?)");
-    $query->bind_params('ssssss', $title, $stock, $details, $price, $shippingAddress, $thumbnail);
+    $query->bind_param('ssssss', $title, $stock, $details, $price, $shippingAddress, $thumbnail);
     $query->execute();
 
 //     $query->bind_param('sisfss', $title, $stock, $details, $price, $shippingAddress, $thumbnail);
