@@ -117,7 +117,8 @@ if(isset($_POST['submit'])){
                 $_SESSION['profilePicture'] = $user['profilePicture'];
                 $_SESSION['role'] = $user['role'];
                 $_SESSION['address']=$user['address'];
-                //$_SESSION["otpExpiry"]=$user['otpExpiry'];
+                $_SESSION["otpExpiry"]=$user['otpExpiry'];
+                $_SESSION["valid"] = "verified";
                 
                 //Set flash message
                 $_SESSION['message'] = "You are now logged in!";
