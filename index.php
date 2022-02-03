@@ -1,3 +1,23 @@
+<?php
+// Check if session is not registered, redirect back to main page.
+// Put this code in first line of web page.
+session_start();
+
+// set time-out period (in seconds)
+$inactive = 120;
+
+// check to see if $_SESSION["timeout"] is set
+if (isset($_SESSION["timeout"])) {
+    // calculate the session's "time to live"
+    $sessionTTL = time() - $_SESSION["timeout"];
+    if ($sessionTTL > $inactive) {
+        session_destroy();
+        header("Location: loginform.php");
+    }
+}
+
+?>
+
 
 <?php
 session_start();
@@ -10,7 +30,8 @@ die('Could not connect: ' . mysqli_connect_errno()); //return error is connect f
 }
 
 
-if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user" && $_SESSION['verified'] != "1" && $_SESSION['otpExpiry'] == "1" ) {
+if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user"  )
+{
     //echo '<script>alert("This page is for admin")</script>';
 
     header("location:loginform.php");
@@ -29,6 +50,77 @@ $result=$pQuery->execute(); //execute
 $result=$pQuery->get_result(); //store the results into a variable
 $nrows=$result->num_rows; //calculate number of rows
 
+<<<<<<< HEAD
+=======
+// if($nrows>0){
+//     //draw the table header ONCE only
+//     echo "<table border=1>";
+//     echo "<tr>";
+//     echo "<th>id</th>";
+//     echo "<th>title</th>";
+//     echo "<th>stock</th>";
+//     echo "<th>details</th>";
+//     echo "<th>price</th>";
+//     echo "<th>shippingAddress</th>";
+//     echo "</tr>";
+    
+//     While($row=$result->fetch_assoc()){ //fetch assoc allows you to read in a record and allows you to traverse your results row by row
+        
+//         $id = $row['id'];
+//         $title= $row['title'];
+//         $stock=$row['stock'];
+//         $details=$row['details'];
+//         $price=$row['price'];
+//         $shippingAddress=$row['shippingAddress'];
+//         $thumbnail=$row['thumbnail'];
+//         $image1=$row['image1'];
+//         $image2=$row['image2'];
+//         $image3=$row['image3'];
+        
+//         echo "<tr>";
+//         echo "<td>";
+//         echo $row['id']; //coresponding record, column's value and prints it out
+//         echo "</td>";
+//         echo "<td>";
+//         echo $row['title'];//coresponding record, column's value and prints it out
+//         echo "</td>";
+//         echo "<td>";
+//         echo $row['stock'];//coresponding record, column's value and prints it out
+//         echo "</td>";
+//         echo "<td>";
+//         echo $row['details'];//coresponding record, column's value and prints it out
+//         echo "</td>";
+//         echo "<td>";
+//         echo $row['price'];//coresponding record, column's value and prints it out
+//         echo "</td>";
+//         echo "<td>";
+//         echo $row['shippingAddress'];//coresponding record, column's value and prints it out
+//         echo "</td>";
+//         echo "<td>";
+//         echo "</td>";
+//         echo "<td>";
+//         echo "<td><a href='addcommentdo.php?productID=".$id."'>Comment</a></td>";
+//         echo "<td><a href='getcommentdo.php?productID=".$id."'>View comments</a></td>";
+//         echo "<td><a href='registerTOCARTdo.php?productID=".$id."'>Add to cart</a></td>";
+        
+//         echo "</tr>";
+        
+        
+       
+//     }
+//     echo "</table>";
+   
+   
+    
+// }
+// else{
+//     echo "0 records<br>";
+// }
+
+
+$username=$_SESSION["username"];
+
+>>>>>>> branch 'main' of https://github.com/purvez/swap
 ?>
 
 
@@ -111,11 +203,12 @@ h1 {
 $connection = mysqli_connect('localhost','root','','swapdb');
 
 
-if( !isset($_POST['search']))
+if( !isset($_POST['search']) )
 {
     $sql="SELECT * FROM product";
     $result1 = mysqli_query($connection,$sql);
-    while ($row=mysqli_fetch_assoc($result1)){
+    while ($row=mysqli_fetch_assoc($result1))
+    {
         component($row['title'], $row['price'], $row['thumbnail'], $row['id'],$row['details'],$row['shippingAddress']);
     }
 }

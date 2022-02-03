@@ -1,4 +1,4 @@
-
+//
 
 <?php	// Creates the user table and setup accounts
 
