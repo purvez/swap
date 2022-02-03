@@ -1,3 +1,23 @@
+<?php
+// Check if session is not registered, redirect back to main page.
+// Put this code in first line of web page.
+session_start();
+
+// set time-out period (in seconds)
+$inactive = 120;
+
+// check to see if $_SESSION["timeout"] is set
+if (isset($_SESSION["timeout"])) {
+    // calculate the session's "time to live"
+    $sessionTTL = time() - $_SESSION["timeout"];
+    if ($sessionTTL > $inactive) {
+        session_destroy();
+        header("Location: loginform.php");
+    }
+}
+
+?>
+
 
 <?php
 session_start();
@@ -9,7 +29,8 @@ if (!$con){
 die('Could not connect: ' . mysqli_connect_errno()); //return error is connect fail
 }
 
-if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user" && $_SESSION['verified'] != "1" && $_SESSION['otpExpiry'] == "1" ) {
+if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user"  )
+{
     //echo '<script>alert("This page is for admin")</script>';
     header("location:loginform.php");
     session_destroy();
@@ -88,6 +109,7 @@ $nrows=$result->num_rows; //calculate number of rows
 
 
 $username=$_SESSION["username"];
+
 ?>
 
 
