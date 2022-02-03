@@ -9,7 +9,9 @@ die('Could not connect: ' . mysqli_connect_errno()); //return error is connect f
 
 
 $USER_ID = $_GET['id'];
-$query= "DELETE FROM users WHERE id= '$USER_ID'";
+$query=$con->prepare("DELETE FROM users WHERE id= '$USER_ID'");
+$query->bind_params('s', $USER_ID);
+$query->execute();
 $data=mysqli_query($con,$query);
 header("Refresh:0; url=page4admin.php");
 session_unset();

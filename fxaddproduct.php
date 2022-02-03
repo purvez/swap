@@ -39,8 +39,9 @@ function addData($title,$stock,$details,$price,$shippingAddress,$thumbnail) {
     else printok("Selecting $db_database");
     
     
-    $query=("INSERT INTO product (title, stock, details, price, shippingAddress, thumbnail)
-		VALUES ('$title', '$stock','$details', '$price', '$shippingAddress', '$thumbnail')");
+    $query=$con->prepare("INSERT INTO product (title, stock, details, price, shippingAddress, thumbnail) VALUES (?, ?, ?, ?, ?, ?)");
+    $query->bind_params('ssssss', $title, $stock, $details, $price, $shippingAddress, $thumbnail);
+    $query->execute();
 
 //     $query->bind_param('sisfss', $title, $stock, $details, $price, $shippingAddress, $thumbnail);
 
