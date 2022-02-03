@@ -169,11 +169,12 @@ h1 {
 $connection = mysqli_connect('localhost','root','','swapdb');
 
 
-if( !isset($_POST['search']))
+if( !isset($_POST['search']) )
 {
     $sql="SELECT * FROM product";
     $result1 = mysqli_query($connection,$sql);
-    while ($row=mysqli_fetch_assoc($result1)){
+    while ($row=mysqli_fetch_assoc($result1))
+    {
         component($row['title'], $row['price'], $row['thumbnail'], $row['id'],$row['details'],$row['shippingAddress']);
     }
 }
