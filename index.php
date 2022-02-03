@@ -1,23 +1,18 @@
 
 <?php
 session_start();
-//session_regenerate_id();
+
+session_regenerate_id();
 $con = mysqli_connect("localhost","root","","swapdb"); //connect to database
 
 if (!$con){
 die('Could not connect: ' . mysqli_connect_errno()); //return error is connect fail
 }
-// echo "<br>";
-// echo "<br>";
-// echo "<br>";
-// echo "<br>";
-// echo "<br>";
-// echo "<br>";
-// echo "<br>";
 
-// print_r($_SESSION);
-$_SESSION['valid'] == "unverified";
-if($_SESSION['otpExpiry'] == "0"){
+
+if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user" && $_SESSION['verified'] != "1" && $_SESSION['otpExpiry'] == "1" ) {
+    //echo '<script>alert("This page is for admin")</script>';
+
     header("location:loginform.php");
     session_destroy();
 }elseif ($_SESSION['otpExpiry']=='1'){
