@@ -117,14 +117,12 @@ if(isset($_POST['submit'])){
                 $_SESSION['profilePicture'] = $user['profilePicture'];
                 $_SESSION['role'] = $user['role'];
                 $_SESSION['address']=$user['address'];
-                $_SESSION["otpExpiry"]=$user['otpExpiry'];
-                $_SESSION["valid"] = "verified";
-                
                 //Set flash message
                 $_SESSION['message'] = "You are now logged in!";
                 $_SESSION['alert-success'] = "alert-success";
                 $_SESSION['verified']=$user['verified'];
                 $otp = rand(100000, 999999);
+                //$otphashed = password_hash($otp, PASSWORD_DEFAULT);
                 $sql = "UPDATE users SET otp = $otp WHERE email = '". $_POST["username"] ."' OR username = '". $_POST["username"] ."'";
                 $sqlResult = mysqli_query($con, $sql);
 

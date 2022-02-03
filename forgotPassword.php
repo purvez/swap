@@ -24,6 +24,7 @@ if (isset($_POST['password-reset'])) {
     $email = $_POST['email'];
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
         $errors['email'] = "Email address is invalid";
+        
     }
     
     if(empty($email)) {
@@ -111,8 +112,6 @@ if (isset($_POST['password-reset'])) {
 <?php
 // Check if session is not registered, redirect back to main page.
 // Put this code in first line of web page.
-session_start();
-
 // set time-out period (in seconds)
 $inactive = 120;
 
