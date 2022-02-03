@@ -38,9 +38,9 @@ function addData($title,$stock,$details,$price,$shippingAddress,$thumbnail,$imag
     }
     else printok("Selecting $db_database");
     
-    
-    $query="INSERT INTO product (title, stock, details, price, shippingAddress, thumbnail,image1,image2,image3)
-		VALUES ('$title', '$stock','$details', '$price', '$shippingAddress', '$thumbnail','$image1','$image2','$image3')";
+    $query=$con->prepare("INSERT INTO product (title, stock, details, price, shippingAddress, thumbnail,image1,image2,image3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?");
+    $query->bind_params('sssssssss' ,$title, $stock, $details, $price, $shippingAddress, $thumbnail, $image1, $image2, $image3);
+    $query->execute();
     $result=mysqli_query($con,$query);
     if (!$result) {
         printerror("Selecting $db_database",$con);

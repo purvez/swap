@@ -1,7 +1,9 @@
 <?php
     require_once("config.php");
     $productID = $_GET['updateid'];
-    $query = " select * from product where id='".$productID."'";
+    $query=$con->prepare( " select * from product where id='".$productID."'");
+    $query->bind_params('s' ,$productID);
+    $query->execute();
     $result = mysqli_query($con,$query);
 
     while($row=mysqli_fetch_assoc($result))

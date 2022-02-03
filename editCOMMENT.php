@@ -1,7 +1,9 @@
 <?php
     require_once("config.php");
     $commentID = $_GET['updateid'];
-    $query = " select * from review where id='".$commentID."'";
+    $query=$con->prepare(" select * from review where id='".$commentID."'");
+    $query->bind_params("s", $commentID);
+    $query->execute();
     $result = mysqli_query($con,$query);
 
     while($row=mysqli_fetch_assoc($result))

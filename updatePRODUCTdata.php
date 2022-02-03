@@ -15,7 +15,9 @@ if(isset($_POST['update']))
     $image1 = $_POST['image1'];
     $image2 = $_POST['image2'];
     $image3= $_POST['image3'];
-    $query =("update product set title = '".$title."',stock = '".$stock."',details = '".$details."',price = '".$price."',shippingAddress = '".$shippingAddress."',thumbnail = '".$thumbnail."',image1 = '".$image1."',image2 = '".$image2."',image3 = '".$image3."' where id='".$id."'");
+    $query=$con->prepare("update product set title = '".$title."',stock = '".$stock."',details = '".$details."',price = '".$price."',shippingAddress = '".$shippingAddress."',thumbnail = '".$thumbnail."',image1 = '".$image1."',image2 = '".$image2."',image3 = '".$image3."' where id='".$id."'");
+    $query->bind_params('ssssssssss', $title, $stock, $details, $price, $shippingAddress, $thumbnail, $image1, $image2, $image3, $id);
+    $query->execute();
     $result = mysqli_query($con,$query);
     
     if($result)
