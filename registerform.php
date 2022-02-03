@@ -132,6 +132,7 @@ if(isset($_POST['submit'])){
             //Generate Vkey
             $vkey= md5(time().$username);
             
+            
             echo $vkey;
             //Insert account into the database
             $passwd = password_hash($passwd, PASSWORD_DEFAULT);
