@@ -32,18 +32,18 @@ die('Could not connect: ' . mysqli_connect_errno()); //return error is connect f
 }
 
 
-if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user"  )
-{
-    //echo '<script>alert("This page is for admin")</script>';
+// if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user"  )
+// {
+//     //echo '<script>alert("This page is for admin")</script>';
 
-    header("location:loginform.php");
-    session_destroy();
-}elseif ($_SESSION['otpExpiry']=='1'){
-    if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user") {
-        //echo '<script>alert("This page is for admin")</script>';
-        header("location:loginform.php");
-    }
-}
+//     header("location:loginform.php");
+//     session_destroy();
+// }elseif ($_SESSION['otpExpiry']=='1'){
+//     if ($_SESSION['role']!="admin" && $_SESSION['role']!="productadmin" && $_SESSION['role']!="user") {
+//         //echo '<script>alert("This page is for admin")</script>';
+//         header("location:loginform.php");
+//     }
+// }
 
 
 $query="SELECT id,title,stock,details,price,shippingAddress,thumbnail,image1,image2,image3 FROM product"; //SQL statement to read the information
@@ -216,12 +216,15 @@ if( !isset($_POST['search']) )
 if (isset($_POST['search']))
 {   
     $searchKey= $_POST['search'];
-    $sql="SELECT * FROM product WHERE title LIKE '".$searchKey."' OR details LIKE '".$searchKey."' OR shippingAddress LIKE '".$searchKey."'";
+    $sql=("SELECT * FROM product WHERE title LIKE '".$searchKey."' OR details LIKE '".$searchKey."' OR shippingAddress LIKE '".$searchKey."'");
     $result = mysqli_query($connection,$sql);
     while ($row = mysqli_fetch_assoc($result))
     {
         component($row['title'], $row['price'], $row['thumbnail'], $row['id'],$row['details'],$row['shippingAddress']);
     }
+    $query="SELECT * FROM cart WHERE sessionid='$sessionid'"; //SQL statement to read the information
+    $pQuery=$con->prepare($query); //use prepared statements
+    $result=$pQuery->execute(); //execute
     
     if(empty($searchKey))
     {
