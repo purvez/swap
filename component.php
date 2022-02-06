@@ -1,4 +1,4 @@
-//comment
+
 <?php
 
 function component($productname, $productprice, $productimg, $productid, $productdetails,$shippingaddress){

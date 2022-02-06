@@ -1,6 +1,4 @@
-	<!---
-<b><i>Process registration</i></b>
---->
+
 <html>
 <body>
 <?php
@@ -41,7 +39,7 @@ function checkpost($input, $mandatory, $pattern) {
 	
 	
 	if (!$checkall) {
-		printmessage("Error checking inputs<br>Please return to the registration form");
+		printmessage("Error checking inputs<br>Please return to the comment form");
 		die();
 	}
 	

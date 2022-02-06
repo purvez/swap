@@ -48,7 +48,7 @@ include 'login.php'
                         
                         <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response" class="form-control form-control-lg">
                     </div> 
-                    <p class="text-center">Not yet a member? <a href="registerform.php">Sign In</a></p>
+                    <p class="text-center">Not yet a member? <a href="registerform.php">Sign up now!</a></p>
                     <div style="font-size: 0.8em; text-align: center;"><a href="forgotPassword.php">Forgot your Password?</a></div>
                 </form> 
                 <script>
