@@ -41,7 +41,6 @@ function checkpost($input, $mandatory, $pattern) {
 		printmessage("Error checking inputs<br>Please return to the registration form");
 		die();
 	}
-	
 // 	(email, password, username, address, profilePicture, contactNumber,birthday,role)
 	$title=$_POST['title'];
 	$stock=$_POST['stock'];
@@ -49,7 +48,15 @@ function checkpost($input, $mandatory, $pattern) {
 	$price=$_POST['price'];
 	$shippingAddress=$_POST['shippingAddress'];
 	$thumbnail=$_POST['thumbnail'];
-
+    
+	
+	
+	$title=htmlspecialchars($_POST["title"],ENT_QUOTES);
+	$stock=htmlspecialchars($_POST["stock"],ENT_QUOTES);
+	$details=htmlspecialchars($_POST["details"],ENT_QUOTES);
+	$price=htmlspecialchars($_POST["price"],ENT_QUOTES);
+	$shippingAddress=htmlspecialchars($_POST["shippingAddress"],ENT_QUOTES);
+	$thumbnail=htmlspecialchars($_POST["thumbnail"],ENT_QUOTES);
 	
 
 	addData($title,$stock,$details,$price,$shippingAddress,$thumbnail);	

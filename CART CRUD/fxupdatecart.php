@@ -18,7 +18,7 @@ if(isset($_POST['update']))
     //$query->bind_param('ii',$quantity,$cartID); //bind parameters changes
     //NEED SANTIZE HERE
     
-    
+    $quantity=htmlspecialchars($_POST["quantity"],ENT_QUOTES);
     
     $query="SELECT * FROM cart WHERE id='$cartID'"; //SQL statement to read the information
     $pQuery=$con->prepare($query); //use prepared statements

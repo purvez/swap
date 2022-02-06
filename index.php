@@ -215,6 +215,7 @@ if (isset($_POST['search']))
     $sql=("SELECT * FROM product WHERE title LIKE '".$searchKey."' OR details LIKE '".$searchKey."' OR shippingAddress LIKE '".$searchKey."'");
     $result = mysqli_query($connection,$sql);
     while ($row = mysqli_fetch_assoc($result))
+    $searchKey=htmlspecialchars($_POST["search"],ENT_QUOTES);
     {
         component($row['title'], $row['price'], $row['thumbnail'], $row['id'],$row['details'],$row['shippingAddress']);
     }

@@ -18,7 +18,12 @@ if(isset($_POST['update']))
    $query->bind_param('ssii', $content, $datePosted, $rating, $id);
    $query->execute();
    $result = mysqli_query($con,$query);
-    
+
+
+   $content=htmlspecialchars($_POST["content"],ENT_QUOTES);
+   $datePosted=htmlspecialchars($_POST["datePosted"],ENT_QUOTES);
+   $rating=htmlspecialchars($_POST["rating"],ENT_QUOTES);
+  
     if($result && $_SESSION["role"]=="admin")
     {
         header("location:getcommentdo.php?productID=".$productID."");

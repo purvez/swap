@@ -20,6 +20,16 @@ if(isset($_POST['update']))
     $query->execute();
     $result = mysqli_query($con,$query);
     
+    
+    
+    $title=htmlspecialchars($_POST["title"],ENT_QUOTES);
+    $stock=htmlspecialchars($_POST["stock"],ENT_QUOTES);
+    $details=htmlspecialchars($_POST["details"],ENT_QUOTES);
+    $price=htmlspecialchars($_POST["price"],ENT_QUOTES);
+    $shippingAddress=htmlspecialchars($_POST["shippingAddress"],ENT_QUOTES);
+    $thumbnail=htmlspecialchars($_POST["thumbnail"],ENT_QUOTES);
+    
+    
     if($result)
     {
         header("location:productadmin.php");
